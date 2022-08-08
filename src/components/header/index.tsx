@@ -8,7 +8,7 @@ import SiderComponent from "./sider-component";
 const {Content, Footer, Header} = Layout;
 
 const HeaderComponent = () => {
-  const {t} = useTranslation("translation");
+  const {t} = useTranslation("common");
 
   return (
     <>
@@ -41,7 +41,6 @@ const HeaderComponent = () => {
               }}
             >
               {t("description.part1")}
-              {"content"}
             </div>
           </Content>
 

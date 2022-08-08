@@ -9,8 +9,8 @@ const Home: React.FC = () => {
 
 export default Home;
 
-export const getStaticProps = async (locale: string) => ({
+export const getStaticProps = async ({locale}) => ({
   props: {
-    ...(await serverSideTranslations(locale, ["translation"])),
+    ...(await serverSideTranslations(locale, ["common", "common"])),
   },
 });
