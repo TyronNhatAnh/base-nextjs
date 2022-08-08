@@ -1,16 +1,11 @@
 import "../styles/globals.css";
 import "antd/dist/antd.css";
-import "../../i18n";
 
+import {appWithTranslation} from "next-i18next";
 import type {AppProps} from "next/app";
-import {Suspense} from "react";
 
 function MyApp({Component, pageProps}: AppProps) {
-  return (
-    <Suspense fallback="loading">
-      <Component {...pageProps} />
-    </Suspense>
-  );
+  return <Component {...pageProps} />;
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

@@ -1,6 +1,6 @@
 import {Layout} from "antd";
+import {useTranslation} from "next-i18next";
 import React from "react";
-import {useTranslation} from "react-i18next";
 
 import DrawerComp from "../drawer-comp";
 import SiderComponent from "./sider-component";
@@ -8,7 +8,7 @@ import SiderComponent from "./sider-component";
 const {Content, Footer, Header} = Layout;
 
 const HeaderComponent = () => {
-  // const {t} = useTranslation();
+  const {t} = useTranslation("translation");
 
   return (
     <>
@@ -40,7 +40,7 @@ const HeaderComponent = () => {
                 minHeight: 660,
               }}
             >
-              {/* {t("blog.optimized.question")} */}
+              {t("description.part1")}
               {"content"}
             </div>
           </Content>

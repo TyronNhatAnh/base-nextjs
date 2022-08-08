@@ -28,6 +28,8 @@ To learn more about Next.js, take a look at the following resources:
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Config setting file
+Recommand using VS code tool
+add extension Eslint with the lastest version
 ```
     "editor.codeActionsOnSave": {
       "source.fixAll": true
