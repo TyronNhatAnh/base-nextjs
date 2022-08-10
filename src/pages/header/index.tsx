@@ -1,3 +1,4 @@
+import {GetStaticProps} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import React from "react";
 
@@ -9,7 +10,7 @@ const Home: React.FC = () => {
 
 export default Home;
 
-export const getStaticProps = async ({locale}) => ({
+export const getStaticProps: GetStaticProps = async ({locale = "kr"}) => ({
   props: {
     ...(await serverSideTranslations(locale, ["common", "common"])),
   },

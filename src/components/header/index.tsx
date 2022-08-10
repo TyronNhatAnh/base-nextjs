@@ -1,4 +1,4 @@
-import {Layout} from "antd";
+import {Button, Layout} from "antd";
 import {useTranslation} from "next-i18next";
 import React from "react";
 
@@ -40,7 +40,15 @@ const HeaderComponent = () => {
                 minHeight: 660,
               }}
             >
-              {t("description.part1")}
+              <p>{t("description.part1")}</p>
+              <Button
+                onClick={() => {
+                  console.log("test");
+                }}
+                type="primary"
+              >
+                Increment
+              </Button>
             </div>
           </Content>
 
