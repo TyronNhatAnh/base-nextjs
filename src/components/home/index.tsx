@@ -1,7 +1,8 @@
 import {Button, DatePicker} from "antd";
+import Head from "next/head";
 import React, {useEffect, useState} from "react";
 
-const HomeComp = () => {
+const Home = () => {
   console.log("hello");
   const test: String = "21";
   const [a, setA] = useState(false);
@@ -26,17 +27,13 @@ const HomeComp = () => {
   }, []);
 
   return (
-    <div data-testid="home-page">
-      <h1>{"Hello world!"}</h1>
-      <h1 className="text-3xl font-bold underline">{"Hello world!"}</h1>
-
-      <div className="w-full max-w-xs">
-        <Button type="primary">Primary Button</Button>
-
-        <DatePicker placeholder="select date" />
-      </div>
+    <div>
+      <Head>
+        <title>My page title</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
     </div>
   );
 };
 
-export default HomeComp;
+export default Home;

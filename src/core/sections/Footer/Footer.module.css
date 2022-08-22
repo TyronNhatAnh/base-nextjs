@@ -1,0 +1,11 @@
+.sticky {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+.button {
+  color: #000;
+}

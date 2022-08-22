@@ -1,13 +1,16 @@
 import Document, {Head, Html, Main, NextScript} from "next/document";
+import React from "react";
 
 import i18nextConfig from "../../next-i18next.config";
 
-class MyDocument extends Document {
+class SpecialDocument extends Document {
   render() {
-    const currentLocale =
-      this.props.__NEXT_DATA__.locale || i18nextConfig.i18n.defaultLocale;
     return (
-      <Html lang={currentLocale}>
+      <Html
+        lang={
+          this.props.__NEXT_DATA__.locale || i18nextConfig.i18n.defaultLocale
+        }
+      >
         <Head>
           <link
             href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
@@ -29,7 +32,7 @@ class MyDocument extends Document {
             href="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/spaces%2F-L9iS6Wm2hynS5H9Gj7j%2Favatar.png?generation=1523462254548780&amp;alt=media"
           />
         </Head>
-        <body>
+        <body className="bg-white text-black dark:bg-gray-900 dark:text-white duration-200 transition">
           <Main />
           <NextScript />
         </body>
@@ -38,4 +41,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument;
+export default SpecialDocument;

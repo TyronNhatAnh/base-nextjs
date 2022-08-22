@@ -1,9 +1,37 @@
-import React from "react";
+import {getSession} from "next-auth/react";
 
-import FormComp from "../../components/form";
+const Home = ({user}) => {
+  return (
+    <>
+      <h1 className="dark:text-white">Next.js and Auth0 111Example</h1>
 
-const Home: React.FC = () => {
-  return <FormComp />;
+      {!user && (
+        <>
+          <p>
+            To test the login click in <i>Login</i>
+          </p>
+          <p>
+            Once you have logged in you should be able to click in{" "}
+            <i>Profile</i> and <i>Logout</i>
+          </p>
+        </>
+      )}
+
+      {user && (
+        <>
+          <p>email: {user.email}</p>
+          <p>name: {user.name}</p>
+        </>
+      )}
+    </>
+  );
 };
 
+Home.getInitialProps = async ctx => {
+  const session = await getSession(ctx);
+  console.log(session);
+  return {
+    user: session?.user,
+  };
+};
 export default Home;
