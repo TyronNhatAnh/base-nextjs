@@ -47,3 +47,11 @@ button {
 .duration-200 {
   transition-duration: .2s;
 }
+.header {
+  background: #ccc;
+  color: red;
+}
+.dark .header {
+  background: red;
+  color: #ccc;
+}

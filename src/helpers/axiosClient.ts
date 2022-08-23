@@ -1,8 +1,9 @@
 // #region Global Imports
-import {LANG_TYPES} from "app/constants/enums";
-import storage from "app/helpers/localStorage";
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 import {Buffer} from "buffer";
+
+import {LANG_TYPES} from "../constants/enums";
+import storage from "../helpers/localStorage";
 
 const configs: AxiosRequestConfig = {
   baseURL: `${process.env.SERVER_API_URL}`, // use API_ENDPOINT_LOCAL to call local server
@@ -10,7 +11,7 @@ const configs: AxiosRequestConfig = {
     "Content-Type": "application/json",
     "Cache-Control": "no-cache",
     "Access-Control-Allow-Origin": "*",
-    "Accept-Language": storage.getLanguage() || LANG_TYPES.VN,
+    "Accept-Language": storage.getLanguage() || LANG_TYPES.ENGLISH,
   },
   timeout: 60000,
 };
@@ -24,7 +25,8 @@ const ArrayBufferResponseConfig: AxiosRequestConfig = {
 
 const axiosClient: AxiosInstance = axios.create(configs);
 axiosClient.interceptors.request.use((request: AxiosRequestConfig) => {
-  request.headers["Accept-Language"] = storage.getLanguage() || LANG_TYPES.VN;
+  request.headers["Accept-Language"] =
+    storage.getLanguage() || LANG_TYPES.ENGLISH;
   const authorization = storage.getAccessToken();
   if (authorization) {
     request.headers.Authorization = `${authorization}`;

@@ -1,11 +1,16 @@
-import {getSession} from "next-auth/react";
-
-const Home = ({user}) => {
+import {GetStaticProps} from "next";
+import {useSession} from "next-auth/react";
+import {useTranslation} from "next-i18next";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+const Home = () => {
+  const {data: session} = useSession();
+  const {t} = useTranslation("common");
   return (
     <>
-      <h1 className="dark:text-white">Next.js and Auth0 111Example</h1>
+      <h1 className="dark:text-orange-300">Next.js</h1>
+      <p>Test Multi-language: {t("common:title")}</p>
 
-      {!user && (
+      {!session && (
         <>
           <p>
             To test the login click in <i>Login</i>
@@ -17,21 +22,29 @@ const Home = ({user}) => {
         </>
       )}
 
-      {user && (
+      {session && (
         <>
-          <p>email: {user.email}</p>
-          <p>name: {user.name}</p>
+          <div>
+            <img
+              src={
+                session?.user?.image
+                  ? session.user.image
+                  : session?.user?.avatar
+              }
+              width="50"
+            />
+          </div>
+          <p>email: {session?.user?.email}</p>
+          <p>name: {session?.user?.name}</p>
         </>
       )}
     </>
   );
 };
-
-Home.getInitialProps = async ctx => {
-  const session = await getSession(ctx);
-  console.log(session);
-  return {
-    user: session?.user,
-  };
-};
 export default Home;
+
+export const getStaticProps: GetStaticProps = async ({locale = "kr"}) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common", "common"])),
+  },
+});

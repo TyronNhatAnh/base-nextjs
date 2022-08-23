@@ -1,18 +1,19 @@
+import {useTranslation} from "next-i18next";
 import Head from "next/head";
 
 import Footer from "../../core/sections/Footer";
 import Header from "../../core/sections/Header";
 
 type LayoutProps = {
-  user?: any;
   children: React.ReactNode;
 };
 
 const Layout = ({children}: LayoutProps) => {
+  const {t} = useTranslation("common");
   return (
     <>
       <Head>
-        <title>Consumer Web 2.0</title>
+        <title>{t("common:title")}</title>
       </Head>
       <Header />
       <main className="container mx-auto">

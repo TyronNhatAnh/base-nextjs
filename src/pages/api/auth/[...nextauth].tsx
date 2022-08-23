@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 
 export default NextAuth({
@@ -17,6 +18,10 @@ export default NextAuth({
         },
       },
     }),
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    }),
   ],
   callbacks: {
     async signIn({user, account, profile, email, credentials}) {
@@ -25,7 +30,6 @@ export default NextAuth({
     },
     async session({session, token}) {
       session.accessToken = token.accessToken;
-
       return session;
     },
     async jwt({token, user}) {

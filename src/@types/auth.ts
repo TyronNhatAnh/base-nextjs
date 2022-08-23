@@ -1,10 +1,3 @@
-interface AuthStore {
-  [x: string]: any;
-  loading: boolean;
-  token: string;
-  needChangePwd: boolean;
-}
-
 interface LoginRequest {
   username: string;
   password: string;
@@ -13,11 +6,8 @@ interface LoginRequest {
 interface LoginResponse {
   payload: {
     id_token: string;
-    needChangePwd: boolean;
-    distributorCode: string;
-    distributorName: string;
     fullName: string;
-    groupCode: string;
+    name: string;
   };
 }
 

@@ -2,7 +2,7 @@ import {Button, Layout} from "antd";
 import {useTranslation} from "next-i18next";
 import React from "react";
 
-import DrawerComp from "../drawer-comp";
+import DrawerComp from "../Drawer";
 import SiderComponent from "./sider-component";
 
 const {Content, Footer, Header} = Layout;
