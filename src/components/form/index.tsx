@@ -2,7 +2,7 @@ import {Button, Checkbox, DatePicker, Form, Input} from "antd";
 import {Rule} from "antd/lib/form";
 import React from "react";
 
-const App = () => {
+const RegisterForm = () => {
   const onFinish = (values: any) => {
     console.log("Success:", values);
   };
@@ -45,44 +45,92 @@ const App = () => {
   return (
     <Form
       name="basic"
-      labelCol={{
-        span: 6,
-      }}
-      wrapperCol={{
-        span: 12,
-      }}
+      layout="vertical"
       initialValues={{
         remember: true,
       }}
       onFinish={onFinish}
       autoComplete="off"
-      className={"bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"}
+      className=""
     >
-      <Form.Item label="Username" name="username" rules={ruleFields.username}>
-        <Input className={"invisible md:visible"} />
-      </Form.Item>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="">
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={ruleFields.username}
+          >
+            <Input />
+          </Form.Item>
 
-      <Form.Item label="Email" name="email" rules={ruleFields.email}>
-        <Input />
-      </Form.Item>
+          <Form.Item label="Email" name="email" rules={ruleFields.email}>
+            <Input />
+          </Form.Item>
 
-      <Form.Item label="DateTime" name="datetime" rules={ruleFields.datetime}>
-        <DatePicker />
-      </Form.Item>
+          <Form.Item
+            label="DateTime"
+            name="datetime"
+            rules={ruleFields.datetime}
+          >
+            <DatePicker />
+          </Form.Item>
 
-      <Form.Item label="Password" name="password" rules={ruleFields.password}>
-        <Input.Password />
-      </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={ruleFields.password}
+          >
+            <Input.Password />
+          </Form.Item>
 
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{offset: 8, span: 16}}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
+          <Form.Item
+            name="remember"
+            valuePropName="checked"
+            wrapperCol={{offset: 8, span: 16}}
+          >
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+        </div>
+        <div className="">
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={ruleFields.username}
+          >
+            <Input />
+          </Form.Item>
 
-      <Form.Item wrapperCol={{offset: 8, span: 16}}>
+          <Form.Item label="Email" name="email" rules={ruleFields.email}>
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="DateTime"
+            name="datetime"
+            rules={ruleFields.datetime}
+          >
+            <DatePicker />
+          </Form.Item>
+
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={ruleFields.password}
+          >
+            <Input.Password />
+          </Form.Item>
+
+          <Form.Item
+            name="remember"
+            valuePropName="checked"
+            wrapperCol={{offset: 8, span: 16}}
+          >
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+        </div>
+      </div>
+
+      <Form.Item wrapperCol={{offset: 12, span: 24}}>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
@@ -91,4 +139,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default RegisterForm;

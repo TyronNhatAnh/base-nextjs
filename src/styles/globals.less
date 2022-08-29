@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-secondary {
+      @apply bg-secondary-500 border-secondary-600 hover:bg-secondary-400 focus:bg-secondary-600 active:bg-secondary-700 focus:outline-none;
+    }
+
+    .fullscreen {
+        @apply !w-screen h-screen max-h-screen p-0 m-0 top-0 bottom-0;
+        max-width: unset;
+
+        .ant-modal-content {
+          @apply h-full;
+        }
+        .ant-modal-body {
+          @apply bg-blue-100;
+        }
+        .ant-modal-footer {
+          @apply bottom-0 fixed w-screen;
+        }
+    }
+  }
+  .ant-modal-wrap {
+    overflow: hidden;
+  }
