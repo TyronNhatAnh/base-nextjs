@@ -1,18 +1,17 @@
 import {GetStaticProps} from "next";
+import {useSession} from "next-auth/react";
 import {useTranslation} from "next-i18next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
-import Header from "../../containers/Header";
-import {user} from "../../ducks/auth/slice";
-import {useAppSelector} from "../../ducks/hooks";
-
 const Home = () => {
-  const userInfo = useAppSelector(user);
+  const {data: session} = useSession();
   const {t} = useTranslation("common");
   return (
     <>
-      <Header />
-      {!userInfo && (
+      <h1 className="dark:text-orange-300">Next.js</h1>
+      <p>Test Multi-language: {t("common:title")}</p>
+
+      {!session && (
         <>
           <p>
             To test the login click in <i>Login</i>
@@ -24,11 +23,20 @@ const Home = () => {
         </>
       )}
 
-      {userInfo && (
+      {session && (
         <>
           <div>
-            <pre>{JSON.stringify(userInfo, null, 2)}</pre>
+            <img
+              src={
+                session?.user?.image
+                  ? session.user.image
+                  : session?.user?.avatar
+              }
+              width="50"
+            />
           </div>
+          <p>email: {session?.user?.email}</p>
+          <p>name: {session?.user?.name}</p>
         </>
       )}
     </>

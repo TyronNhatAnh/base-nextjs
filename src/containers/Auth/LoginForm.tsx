@@ -1,15 +1,34 @@
 import {KeyOutlined, UserOutlined} from "@ant-design/icons";
 import {Button, Card, Form, Input, Modal} from "antd";
-import {useState} from "react";
+import Router from "next/router";
+import {useEffect, useState} from "react";
 
-import RegisterForm from "../components/Form";
+import storage from "../../common/helpers/localStorage";
+import RegisterForm from "../../components/Form";
+import {isAuthenticated, user} from "../../ducks/auth/slice";
+import {loginAsync} from "../../ducks/auth/thunks";
+import {useAppDispatch, useAppSelector} from "../../ducks/hooks";
 
-export default function Test() {
+export default function LoginForm() {
   const [visible, setVisible] = useState(false);
+  const isAuth = useAppSelector(isAuthenticated);
+  const userInfo = useAppSelector(user);
+  const token = userInfo.token;
+  const dispatch = useAppDispatch();
+  const loginHandle = (values: any) => {
+    dispatch(loginAsync(values));
+  };
+  useEffect(() => {
+    if (isAuth) {
+      storage.setAccessToken(token);
+      storage.setObjectIntoKey("user", userInfo);
+      Router.push("/");
+    }
+  }, [isAuth, token, userInfo]);
 
   return (
-    <div className="md:container md:w-auto py-12 bg-white">
-      <div className="flex flex-col w-full h-80 bg-blue-300">
+    <div className="md:w-auto bg-white">
+      <div className="flex flex-col w-full h-80 bg-primary-300 dark:bg-gray-400">
         <div className="flex justify-center md:justify-end p-2">
           <Button
             type="primary"
@@ -33,17 +52,18 @@ export default function Test() {
               name="basic"
               initialValues={{remember: true}}
               autoComplete="off"
+              onFinish={loginHandle}
             >
               <Form.Item
                 className="border-b-4 border-blue-500"
-                name="username"
+                name="phone_number"
                 rules={[
-                  {required: true, message: "Please input your username!"},
+                  {required: true, message: "Please input your Phone Number!"},
                 ]}
               >
                 <Input
                   size="large"
-                  placeholder="User name"
+                  placeholder="Phone Number"
                   prefix={<UserOutlined className="text-blue-400" />}
                   className="w-full"
                 />
@@ -57,6 +77,7 @@ export default function Test() {
               >
                 <Input.Password
                   size="large"
+                  defaultValue={"1234"}
                   placeholder="Password"
                   prefix={<KeyOutlined className="text-blue-400" />}
                 />

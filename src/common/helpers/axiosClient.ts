@@ -3,10 +3,11 @@ import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 import {Buffer} from "buffer";
 
 import {LANG_TYPES} from "../constants/enums";
-import storage from "../helpers/localStorage";
+import storage from "./localStorage";
 
 const configs: AxiosRequestConfig = {
-  baseURL: `${process.env.SERVER_API_URL}`, // use API_ENDPOINT_LOCAL to call local server
+  baseURL: "http://localhost:3000/api",
+  // baseURL: `${process.env.SERVER_API_URL}`, // use API_ENDPOINT_LOCAL to call local server
   headers: {
     "Content-Type": "application/json",
     "Cache-Control": "no-cache",

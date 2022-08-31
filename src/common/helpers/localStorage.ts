@@ -1,9 +1,13 @@
+//Todo: add comments
 const storage = {
   setValueIntoKey(key: string, value: any) {
     localStorage.setItem(key, value);
   },
   getValueFromKey(key: string) {
-    return localStorage.getItem(key);
+    if (typeof window !== "undefined") {
+      // Perform localStorage action
+      return localStorage.getItem(key);
+    }
   },
   setObjectIntoKey(key: string, obj) {
     localStorage.setItem(key, JSON.stringify(obj));
@@ -11,7 +15,7 @@ const storage = {
   getObjectFromKey(key: string) {
     return JSON.parse(localStorage.getItem(key) || "{}");
   },
-  setLang(lang: string) {
+  setLanguage(lang: string) {
     this.setValueIntoKey("lang", lang);
   },
   setModeTheme(theme: string) {

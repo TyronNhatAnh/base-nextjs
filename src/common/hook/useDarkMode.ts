@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-import localStorage from "../../helpers/localStorage";
+import localStorage from "../helpers/localStorage";
 
 export default function useDarkMode() {
   const [theme, setTheme] = useState(
@@ -11,8 +11,12 @@ export default function useDarkMode() {
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove(colorTheme);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     root.classList.add(theme);
     //Save theme to Local Storage
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     localStorage.setModeTheme(theme);
   }, [theme, colorTheme]);
 

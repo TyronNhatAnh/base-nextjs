@@ -1,19 +1,19 @@
 import {Button} from "antd";
 import {useEffect, useState} from "react";
 
-import useDarkMode from "../../../common/hook/useDarkMode";
+import useDarkMode from "../../common/hook/useDarkMode";
 import styles from "./Footer.module.css";
 const Footer = () => {
   const [colorTheme, setTheme] = useDarkMode();
   const [textMode, setTextMode] = useState("");
-  const [isDarkMode, setDarkMode] = useState(
-    colorTheme === "light" ? true : false,
-  );
+  const [isDarkMode, setDarkMode] = useState(colorTheme === "light");
   useEffect(
     () => setTextMode(isDarkMode ? "Dark Mode" : "Light Mode"),
     [isDarkMode],
   );
-  const toggleDarkMode = event => {
+  const toggleDarkMode = () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     setTheme(colorTheme);
     setDarkMode(!isDarkMode);
   };

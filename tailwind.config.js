@@ -9,6 +9,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        current: 'currentColor',
+        primary: {
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#0088bf',
+          400: '#fbbf24',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+        },
         secondary: {
           100: '#fef3c7',
           200: '#fde68a',
