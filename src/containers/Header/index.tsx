@@ -1,38 +1,28 @@
-import type {MenuProps} from "antd";
-import {Modal} from "antd";
-import {Menu} from "antd";
-import {signOut, useSession} from "next-auth/react";
-import Link from "next/link";
-import React, {useState} from "react";
-
-import MenuComp from "../../components/MenuComp";
-// import Drawer from "../../../components/Drawer";
-import SignIn from "../../components/SignIn";
-// import style from "./Header.module.css";
+import Nav from "@components/Nav";
+import {user} from "@ducks/auth/slice";
+import {getProfile} from "@ducks/auth/thunks";
+import {useAppDispatch, useAppSelector} from "@ducks/hooks";
+import storage from "@helpers/localStorage";
+import React, {useCallback, useEffect} from "react";
 
 const Header = () => {
-  const {data: session} = useSession();
+  const dispatch = useAppDispatch();
+  const userProfile = useAppSelector(user);
+  const loadProfile = useCallback(async () => {
+    await dispatch(getProfile());
+  }, [dispatch]);
 
-  console.log("user", session?.user);
-  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    if (storage.getAccessToken()) {
+      loadProfile();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleCancel = () => {
-    setVisible(false);
-  };
   return (
     <header className="bg-red">
-      <MenuComp />
-      {/* <Drawer /> */}
-      {!session && (
-        <Modal
-          visible={visible}
-          title="Social Login Popup"
-          onCancel={handleCancel}
-          footer={null}
-        >
-          <SignIn />
-        </Modal>
-      )}
+      {/* <AnnouncementBar/> */}
+      <Nav user={userProfile} />
     </header>
   );
 };

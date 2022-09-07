@@ -1,10 +1,17 @@
+import {
+  LoginResponse,
+  ProfileResponse,
+  ResetPasswordResponse,
+} from "../@types/auth";
 import axiosClient from "../common/helpers/axiosClient";
-
 export const AuthAPI = {
   async LOGIN(payload: any): Promise<LoginResponse> {
-    return await axiosClient.post("/account/login", payload);
+    return await axiosClient.post("/auth/login", payload);
   },
-  async RESET_PASSWORD(payload: any): Promise<ChangePasswordResponse> {
+  async RESET_PASSWORD(payload: any): Promise<ResetPasswordResponse> {
     return await axiosClient.post("/reset-password", payload);
+  },
+  async PROFILE(): Promise<ProfileResponse> {
+    return await axiosClient.get("/account/profile");
   },
 };

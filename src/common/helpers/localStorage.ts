@@ -9,7 +9,7 @@ const storage = {
       return localStorage.getItem(key);
     }
   },
-  setObjectIntoKey(key: string, obj) {
+  setObjectIntoKey(key: string, obj: any) {
     localStorage.setItem(key, JSON.stringify(obj));
   },
   getObjectFromKey(key: string) {

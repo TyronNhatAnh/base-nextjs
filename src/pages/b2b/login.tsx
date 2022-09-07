@@ -1,9 +1,9 @@
-import LoginForm from "../../containers/Auth/LoginForm";
+import {Login} from "@containers/Auth";
 
 export default function LoginPage() {
   return (
     <>
-      <LoginForm />
+      <Login />
     </>
   );
 }

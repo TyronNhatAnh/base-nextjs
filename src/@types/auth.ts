@@ -1,23 +1,21 @@
-interface LoginRequest {
+export interface LoginRequest {
   username: string;
   password: string;
 }
 
-interface LoginResponse {
-  payload: {
-    id_token: string;
-    fullName: string;
-    name: string;
-  };
+export interface LoginResponse {
+  id: number;
+  token: string;
 }
 
-interface ChangePasswordResponse {
+export interface ResetPasswordResponse {
   payload: string;
 }
 
-interface User {
+export interface ProfileResponse {
   id?: any;
   login?: string;
+  type_cd?: number;
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -29,4 +27,5 @@ interface User {
   lastModifiedBy?: string;
   lastModifiedDate?: Date | null;
   password?: string;
+  token?: string;
 }

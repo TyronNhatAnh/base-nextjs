@@ -28,5 +28,6 @@
     "no-negated-condition": "error", //Check using the correct condition: a?true:fasle (Not: !a?false:true)
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "error" // Checks effect dependencies
-  }
+  },
+  "ignorePatterns": ["*/config.js"]
 }

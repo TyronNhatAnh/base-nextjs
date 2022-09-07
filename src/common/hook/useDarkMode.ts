@@ -1,6 +1,5 @@
+import localStorage from "@helpers/localStorage";
 import {useEffect, useState} from "react";
-
-import localStorage from "../helpers/localStorage";
 
 export default function useDarkMode() {
   const [theme, setTheme] = useState(

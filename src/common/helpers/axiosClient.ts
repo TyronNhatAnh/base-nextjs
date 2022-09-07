@@ -4,10 +4,9 @@ import {Buffer} from "buffer";
 
 import {LANG_TYPES} from "../constants/enums";
 import storage from "./localStorage";
-
 const configs: AxiosRequestConfig = {
   baseURL: "http://localhost:3000/api",
-  // baseURL: `${process.env.SERVER_API_URL}`, // use API_ENDPOINT_LOCAL to call local server
+  // baseURL: `${process.env.SERVER_API_URL}`,
   headers: {
     "Content-Type": "application/json",
     "Cache-Control": "no-cache",
@@ -30,7 +29,7 @@ axiosClient.interceptors.request.use((request: AxiosRequestConfig) => {
     storage.getLanguage() || LANG_TYPES.ENGLISH;
   const authorization = storage.getAccessToken();
   if (authorization) {
-    request.headers.Authorization = `${authorization}`;
+    request.headers["Authorization"] = `Token token=${authorization}$`;
   }
 
   return request;

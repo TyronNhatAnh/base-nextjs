@@ -1,17 +1,22 @@
+import storage from "@helpers/localStorage";
 import {createSlice} from "@reduxjs/toolkit";
 
 import {RootState} from "../store";
 import {initialState} from "./models";
-import {loginAsync} from "./thunks";
+import {getProfile, loginAsync} from "./thunks";
 
 export const authSlide = createSlice({
   name: "auth",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    login: (state, action) => {
-      state.isAuthenticated = true;
-      state.user = action.payload;
+    logout: state => {
+      storage.removeAccessToken();
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: {},
+      };
     },
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -19,21 +24,49 @@ export const authSlide = createSlice({
   extraReducers: builder => {
     builder
       .addCase(loginAsync.pending, state => {
-        state.status = "loading";
+        return {
+          ...state,
+          status: "loading",
+        };
       })
-      .addCase(loginAsync.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.user = action.payload;
-        state.isAuthenticated = true;
+      .addCase(loginAsync.fulfilled, state => {
+        return {
+          ...state,
+          status: "idle",
+          isAuthenticated: true,
+        };
       })
       .addCase(loginAsync.rejected, state => {
-        state.status = "failed";
+        return {
+          ...state,
+          status: "failed",
+        };
+      })
+      .addCase(getProfile.pending, state => {
+        return {
+          ...state,
+          status: "loading",
+        };
+      })
+      .addCase(getProfile.fulfilled, (state, action) => {
+        return {
+          ...state,
+          status: "idle",
+          user: action.payload,
+          isAuthenticated: action.payload ? true : false,
+        };
+      })
+      .addCase(getProfile.rejected, state => {
+        return {
+          ...state,
+          status: "failed",
+        };
       });
   },
 });
 
 //action here
-export const {login} = authSlide.actions;
+export const {logout} = authSlide.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

@@ -1,7 +1,8 @@
 import "antd/dist/antd.less";
 import "../styles/globals.less";
 
-import {SessionProvider} from "next-auth/react";
+import ProtectedRoutes from "@components/ProtectedRoutes";
+// import {SessionProvider} from "next-auth/react";
 import {appWithTranslation} from "next-i18next";
 import type {AppProps} from "next/app";
 import {Provider} from "react-redux";
@@ -10,14 +11,20 @@ import reportWebVitals from "../../reportWebVitals";
 import Layout from "../components/Layout";
 import {store} from "../ducks/store";
 
-function App({Component, pageProps: {session, ...pageProps}}: AppProps) {
+function App({
+  Component,
+  pageProps: {session, ...pageProps},
+  router,
+}: AppProps) {
   return (
     <Provider store={store}>
-      <SessionProvider session={session}>
+      {/* <SessionProvider session={session}> */}
+      <ProtectedRoutes router={router}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </SessionProvider>
+      </ProtectedRoutes>
+      {/* </SessionProvider> */}
     </Provider>
   );
 }

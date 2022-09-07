@@ -1,11 +1,13 @@
-export interface CounterState {
+import {ProfileResponse} from "@type/auth";
+
+export interface UserState {
   isAuthenticated: boolean;
-  user: {};
+  user: ProfileResponse;
   status: "idle" | "loading" | "failed";
 }
 
-export const initialState: CounterState = {
+export const initialState: UserState = {
   isAuthenticated: false,
   user: {},
-  status: "idle",
+  status: "loading",
 };
