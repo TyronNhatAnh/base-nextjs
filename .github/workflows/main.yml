@@ -1,0 +1,29 @@
+name: Main Workflow
+
+on:
+  # Trigger when pushing in `main` branch
+  # or pull requests, and when creating a pull request.
+  push:
+    branches:
+      - main
+  pull_request:
+      types: [opened, synchronize, reopened]
+jobs:
+  lint_test_build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16 # current lts
+        cache: 'npm' # turn on packages caching
+    - name: Install dependency package
+      run: npm ci
+    - name: Check code styles
+      run: npm run lint
+    - name: Run unit test
+      run: npm run test:ci
+    - name: Run build
+      run: npm run build
