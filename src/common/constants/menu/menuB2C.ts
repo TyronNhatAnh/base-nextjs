@@ -55,6 +55,13 @@ const menuB2C = (type: string) => {
       type: "public",
     },
     {
+      label: "Login",
+      key: "b2c_login",
+      items: [],
+      type: "public",
+      // icon: faUsersRectangle
+    },
+    {
       label: "Logout",
       key: "b2c_logout",
       items: [],
