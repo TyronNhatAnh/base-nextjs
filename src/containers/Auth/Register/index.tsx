@@ -16,7 +16,6 @@ export default function Register() {
   const loginHandle = (values: any) => {
     dispatch(loginAsync(values));
   };
-  console.log(token);
   useEffect(() => {
     if (isAuth && token) {
       storage.setAccessToken(token);

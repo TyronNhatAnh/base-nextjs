@@ -7,7 +7,6 @@ const isBrowser = () => typeof window !== "undefined";
 const ProtectedRoute = ({router, children}) => {
   //Identify authenticated user
   const isAuth = useAppSelector(isAuthenticated);
-  console.log(isAuth);
   const unprotectedRoutes = [
     pathB2B.LOGIN,
     pathB2B.HOME,

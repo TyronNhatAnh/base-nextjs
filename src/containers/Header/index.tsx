@@ -13,6 +13,7 @@ const Header = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    console.log("dzo");
     if (storage.getAccessToken()) {
       loadProfile();
     }
