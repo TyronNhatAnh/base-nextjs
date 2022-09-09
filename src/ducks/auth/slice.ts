@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 import {RootState} from "../store";
 import {initialState} from "./models";
-import {getProfile, loginAsync} from "./thunks";
+import {getB2BProfile, getProfile, loginAsync, loginB2BAsync} from "./thunks";
 
 export const authSlide = createSlice({
   name: "auth",
@@ -42,6 +42,25 @@ export const authSlide = createSlice({
           status: "failed",
         };
       })
+      .addCase(loginB2BAsync.pending, state => {
+        return {
+          ...state,
+          status: "loading",
+        };
+      })
+      .addCase(loginB2BAsync.fulfilled, state => {
+        return {
+          ...state,
+          status: "idle",
+          isAuthenticated: true,
+        };
+      })
+      .addCase(loginB2BAsync.rejected, state => {
+        return {
+          ...state,
+          status: "failed",
+        };
+      })
       .addCase(getProfile.pending, state => {
         return {
           ...state,
@@ -57,6 +76,26 @@ export const authSlide = createSlice({
         };
       })
       .addCase(getProfile.rejected, state => {
+        return {
+          ...state,
+          status: "failed",
+        };
+      })
+      .addCase(getB2BProfile.pending, state => {
+        return {
+          ...state,
+          status: "loading",
+        };
+      })
+      .addCase(getB2BProfile.fulfilled, (state, action) => {
+        return {
+          ...state,
+          status: "idle",
+          user: action.payload,
+          isAuthenticated: action.payload ? true : false,
+        };
+      })
+      .addCase(getB2BProfile.rejected, state => {
         return {
           ...state,
           status: "failed",

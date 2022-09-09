@@ -13,6 +13,7 @@ export interface ResetPasswordResponse {
 }
 
 export interface ProfileResponse {
+  user_code: any;
   id?: any;
   login?: string;
   type_cd?: number;

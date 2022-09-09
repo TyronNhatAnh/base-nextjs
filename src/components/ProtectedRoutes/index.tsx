@@ -1,12 +1,11 @@
 import {pathB2B, pathB2C} from "@constants/path";
-import {isAuthenticated} from "@ducks/auth/slice";
-import {useAppSelector} from "@ducks/hooks";
+import storage from "@helpers/localStorage";
 //check if you are on the client (browser) or server
 const isBrowser = () => typeof window !== "undefined";
 
 const ProtectedRoute = ({router, children}) => {
   //Identify authenticated user
-  const isAuth = useAppSelector(isAuthenticated);
+
   const unprotectedRoutes = [
     pathB2B.LOGIN,
     pathB2B.HOME,
@@ -18,8 +17,7 @@ const ProtectedRoute = ({router, children}) => {
    * @var pathIsProtected Checks if path exists in the unprotectedRoutes routes array
    */
   const pathIsProtected = unprotectedRoutes.indexOf(router.pathname) === -1;
-
-  if (isBrowser() && !isAuth && pathIsProtected) {
+  if (isBrowser() && !storage.getAccessToken() && pathIsProtected) {
     router.push(pathB2C.LOGIN);
   }
 

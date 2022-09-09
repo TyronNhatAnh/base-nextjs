@@ -2,7 +2,7 @@ import {MenuFoldOutlined} from "@ant-design/icons";
 import {Drawer} from "antd";
 import React, {useState} from "react";
 
-import SiderComponent from "../header/sider-component";
+import SiderComponent from "../SiderComponent/sider-component";
 
 const DrawerComp = () => {
   const [visible, setVisible] = useState(false);

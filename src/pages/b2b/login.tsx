@@ -1,9 +1,9 @@
-import {Login} from "@containers/Auth";
+import {LoginB2B} from "@containers/Auth";
 
 export default function LoginPage() {
   return (
     <>
-      <Login />
+      <LoginB2B />
     </>
   );
 }

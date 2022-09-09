@@ -1,19 +1,21 @@
 import Nav from "@components/Nav";
+import AnnouncementBar from "@containers/B2C/FrontPage/AnnouncementBar";
 import {user} from "@ducks/auth/slice";
-import {getProfile} from "@ducks/auth/thunks";
+import {getB2BProfile, getProfile} from "@ducks/auth/thunks";
 import {useAppDispatch, useAppSelector} from "@ducks/hooks";
 import storage from "@helpers/localStorage";
+import {useRouter} from "next/router";
 import React, {useCallback, useEffect} from "react";
 
 const Header = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const userProfile = useAppSelector(user);
   const loadProfile = useCallback(async () => {
-    await dispatch(getProfile());
-  }, [dispatch]);
+    await dispatch(router.pathname == "/b2b" ? getB2BProfile() : getProfile());
+  }, [dispatch, router.pathname]);
 
   useEffect(() => {
-    console.log("dzo");
     if (storage.getAccessToken()) {
       loadProfile();
     }
@@ -22,7 +24,7 @@ const Header = () => {
 
   return (
     <header className="bg-red">
-      {/* <AnnouncementBar/> */}
+      {router.pathname !== "/b2b" && <AnnouncementBar />}
       <Nav user={userProfile} />
     </header>
   );

@@ -15,3 +15,22 @@ export const getProfile = createAsyncThunk("auth/getProfile", async () => {
   const response = await AuthAPI.PROFILE();
   return response;
 });
+
+export const loginB2BAsync = createAsyncThunk(
+  "auth/b2b_login",
+  async payload => {
+    const response = await AuthAPI.B2BLOGIN(payload);
+    if (response.token) {
+      storage.setAccessToken(response.token);
+    }
+    return response;
+  },
+);
+
+export const getB2BProfile = createAsyncThunk(
+  "auth/getB2BProfile",
+  async () => {
+    const response = await AuthAPI.B2B_PROFILE();
+    return response;
+  },
+);

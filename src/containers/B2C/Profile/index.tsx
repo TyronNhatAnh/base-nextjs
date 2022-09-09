@@ -1,12 +1,11 @@
-import Header from "@containers/Header";
 import {user} from "@ducks/auth/slice";
 import {useAppSelector} from "@ducks/hooks";
 export default function Profile() {
   const userInfo = useAppSelector(user);
+  console.log(userInfo);
   return (
     <div>
-      <Header />
-      <p>This is Profile Page</p>
+      <p>This is Profile</p>
       {userInfo && (
         <>
           <div>
