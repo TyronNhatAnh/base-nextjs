@@ -12,8 +12,6 @@ const Footer = () => {
     [isDarkMode],
   );
   const toggleDarkMode = () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     setTheme(colorTheme);
     setDarkMode(!isDarkMode);
   };
