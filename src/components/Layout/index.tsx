@@ -1,7 +1,6 @@
+import Footer from "@containers/Footer";
 import {useTranslation} from "next-i18next";
 import Head from "next/head";
-
-import Footer from "../../containers/Footer";
 
 type LayoutProps = {
   children: React.ReactNode;

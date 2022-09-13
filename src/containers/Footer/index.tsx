@@ -1,7 +1,7 @@
+import useDarkMode from "@hook/useDarkMode";
 import {Button} from "antd";
 import {useEffect, useState} from "react";
 
-import useDarkMode from "../../common/hook/useDarkMode";
 import styles from "./Footer.module.css";
 const Footer = () => {
   const [colorTheme, setTheme] = useDarkMode();

@@ -1,4 +1,5 @@
 import {menuB2B, menuB2C} from "@constants/menu";
+import {pathB2B, pathB2C} from "@constants/path";
 import {logout} from "@ducks/auth/slice";
 import {useAppDispatch} from "@ducks/hooks";
 import {ProfileResponse} from "@type/auth";
@@ -9,12 +10,12 @@ import {useRouter} from "next/router";
 import React, {useState} from "react";
 
 type NavProps = {
-  user: ProfileResponse;
+  user: ProfileResponse | null;
 };
 
 const Nav = (props: NavProps) => {
   const route = useRouter();
-  const isB2BSite = route.pathname === "/b2b";
+  const isB2BSite = route.pathname === pathB2B.HOME;
   const user = props.user;
   const menuItems = isB2BSite ? menuB2B("public") : menuB2C("public");
   const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ const Nav = (props: NavProps) => {
   };
 
   const handleLogin = () => {
-    Router.push(isB2BSite ? "/b2b/login" : "login");
+    Router.push(isB2BSite ? pathB2B.LOGIN : pathB2C.LOGIN);
   };
   const handleHome = () => {
     Router.push("/");
@@ -63,7 +64,7 @@ const Nav = (props: NavProps) => {
           ) : (
             <Button onClick={() => handleRedirect("b2b")}>B2B Site</Button>
           )}
-          {user.user_code ? (
+          {user?.user_code ? (
             <Button onClick={handleLogout}>Logout</Button>
           ) : (
             <Button onClick={handleLogin}>Login</Button>

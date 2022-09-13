@@ -1,6 +1,6 @@
 import pathB2C from "../path/pathB2C";
 
-const menuB2C = (type: string) => {
+const menuB2C = (type: "public" | "protected") => {
   const menus = {
     public: [
       {

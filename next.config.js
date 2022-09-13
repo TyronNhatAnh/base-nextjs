@@ -1,8 +1,7 @@
-/** @type {import('next').NextConfig} */
-
 const withLess = require("next-with-less");
 const {i18n} = require("./next-i18next.config");
 
+/** @type {import('next').NextConfig} */
 const nextConfig = withLess({
   reactStrictMode: false,
   swcMinify: true,

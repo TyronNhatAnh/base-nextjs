@@ -5,5 +5,5 @@ const pathB2C = {
   PRICING: "/pricing",
   SETTING: "/setting",
   FAQ: "/faq",
-};
+} as const;
 export default pathB2C;

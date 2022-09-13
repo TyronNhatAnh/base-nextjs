@@ -8,5 +8,5 @@ const pathB2B = {
   SERVICE: "/b2b/service",
   FAQ: "/b2b/faq",
   PRICING: "/b2b/priceing",
-};
+} as const;
 export default pathB2B;

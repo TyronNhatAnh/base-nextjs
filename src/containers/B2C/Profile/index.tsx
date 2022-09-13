@@ -2,7 +2,6 @@ import {user} from "@ducks/auth/slice";
 import {useAppSelector} from "@ducks/hooks";
 export default function Profile() {
   const userInfo = useAppSelector(user);
-  console.log(userInfo);
   return (
     <div>
       <p>This is Profile</p>

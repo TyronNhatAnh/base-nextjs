@@ -11,7 +11,7 @@ export default function ResetPassword() {
     <>
       <div className="w-auto mx-auto mt-5">
         <div className="text-center mb-5">
-          <Link href={"/"}>
+          <Link href="/">
             <img
               width={200}
               src={

@@ -1,6 +1,6 @@
 import {KeyOutlined, UserOutlined} from "@ant-design/icons";
 import {isAuthenticated} from "@ducks/auth/slice";
-import {loginAsync} from "@ducks/auth/thunks";
+import {login} from "@ducks/auth/thunks";
 import {useAppDispatch, useAppSelector} from "@ducks/hooks";
 import {Button, Card, Divider, Form, Input} from "antd";
 import Link from "next/link";
@@ -11,7 +11,7 @@ export default function Login() {
   const isAuth = useAppSelector(isAuthenticated);
   const dispatch = useAppDispatch();
   const loginHandle = (values: any) => {
-    dispatch(loginAsync(values));
+    dispatch(login(values));
   };
   useEffect(() => {
     if (isAuth) {
@@ -23,7 +23,7 @@ export default function Login() {
     <>
       <div className="w-auto mx-auto mt-5">
         <div className="text-center mb-5">
-          <Link href={"/"}>
+          <Link href="/">
             <img
               width={200}
               src={
@@ -80,7 +80,7 @@ export default function Login() {
             <div className="text-center">
               <p>
                 <Link
-                  href={"/forgotpasword"}
+                  href="/forgotpasword"
                   className="btn py-3 h-auto bg-secondary"
                 >
                   Forgot Password?
@@ -90,11 +90,8 @@ export default function Login() {
             <Divider dashed />
             <div>
               <p>
-                If you don't have any account,{" "}
-                <Link
-                  href={"/register"}
-                  className="btn py-3 h-auto bg-secondary"
-                >
+                If you don't have any account,&nbsp;
+                <Link href="/register" className="btn py-3 h-auto bg-secondary">
                   please register
                 </Link>
               </p>

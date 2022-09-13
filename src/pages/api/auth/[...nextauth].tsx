@@ -8,8 +8,8 @@ export default NextAuth({
   },
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
       authorization: {
         params: {
           prompt: "consent",
@@ -19,8 +19,8 @@ export default NextAuth({
       },
     }),
     GithubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      clientId: process.env.GITHUB_CLIENT_ID || "",
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
     }),
   ],
   callbacks: {
@@ -38,7 +38,7 @@ export default NextAuth({
       }
       return token;
     },
-    redirect: async (url, _baseUrl) => {
+    redirect: async ({url, baseUrl}) => {
       if (url === "/profile") {
         return Promise.resolve("/");
       }

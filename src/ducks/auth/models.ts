@@ -2,12 +2,12 @@ import {ProfileResponse} from "@type/auth";
 
 export interface UserState {
   isAuthenticated: boolean;
-  user: ProfileResponse;
+  user: ProfileResponse | null;
   status: "idle" | "loading" | "failed";
 }
 
 export const initialState: UserState = {
   isAuthenticated: false,
-  user: {},
-  status: "loading",
+  user: null,
+  status: "idle",
 };

@@ -1,9 +1,8 @@
+import {AuthAPI} from "@apis/auth";
 import storage from "@helpers/localStorage";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
-import {AuthAPI} from "../../apis/auth";
-
-export const loginAsync = createAsyncThunk("auth/login", async payload => {
+export const login = createAsyncThunk("auth/login", async (payload: any) => {
   const response = await AuthAPI.LOGIN(payload);
   if (response.token) {
     storage.setAccessToken(response.token);
@@ -16,9 +15,9 @@ export const getProfile = createAsyncThunk("auth/getProfile", async () => {
   return response;
 });
 
-export const loginB2BAsync = createAsyncThunk(
+export const loginB2B = createAsyncThunk(
   "auth/b2b_login",
-  async payload => {
+  async (payload: any) => {
     const response = await AuthAPI.B2BLOGIN(payload);
     if (response.token) {
       storage.setAccessToken(response.token);

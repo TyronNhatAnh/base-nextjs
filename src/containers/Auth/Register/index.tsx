@@ -1,6 +1,6 @@
 import {KeyOutlined, MailOutlined, UserOutlined} from "@ant-design/icons";
 import {isAuthenticated, user} from "@ducks/auth/slice";
-import {loginAsync} from "@ducks/auth/thunks";
+import {login} from "@ducks/auth/thunks";
 import {useAppDispatch, useAppSelector} from "@ducks/hooks";
 import storage from "@helpers/localStorage";
 import {Button, Card, Form, Input} from "antd";
@@ -11,10 +11,10 @@ import {useEffect} from "react";
 export default function Register() {
   const isAuth = useAppSelector(isAuthenticated);
   const userInfo = useAppSelector(user);
-  const token = userInfo.token;
+  const token = userInfo?.token;
   const dispatch = useAppDispatch();
   const loginHandle = (values: any) => {
-    dispatch(loginAsync(values));
+    dispatch(login(values));
   };
   useEffect(() => {
     if (isAuth && token) {
@@ -27,7 +27,7 @@ export default function Register() {
     <>
       <div className="w-auto mx-auto mt-5">
         <div className="text-center mb-5">
-          <Link href={"/"}>
+          <Link href="/">
             <img
               width={200}
               src={
