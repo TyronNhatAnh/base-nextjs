@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 // This is custom 404 page, you can remove the folder name to using it
-// Or using the comon _error.tsx page
+// Or using the common _error.tsx page
 const FourOhFour = () => {
   return (
     <>
