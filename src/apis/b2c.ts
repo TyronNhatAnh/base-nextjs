@@ -3,6 +3,6 @@ import {ProfileResponse} from "@type/auth";
 
 export const B2CAPI = {
   async PROFILE(payload: any): Promise<ProfileResponse> {
-    return await axiosClient.post("/profile", payload);
+    return axiosClient.post("/profile", payload);
   },
 };

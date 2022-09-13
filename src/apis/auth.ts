@@ -1,23 +1,24 @@
+import axiosClient from "@helpers/axiosClient";
 import {
   LoginResponse,
   ProfileResponse,
   ResetPasswordResponse,
-} from "../@types/auth";
-import axiosClient from "../common/helpers/axiosClient";
+} from "@type/auth";
+
 export const AuthAPI = {
   async LOGIN(payload: any): Promise<LoginResponse> {
-    return await axiosClient.post("/auth/login", payload);
+    return axiosClient.post("/auth/login", payload);
   },
   async B2BLOGIN(payload: any): Promise<LoginResponse> {
-    return await axiosClient.post("/auth/b2blogin", payload);
+    return axiosClient.post("/auth/b2blogin", payload);
   },
   async RESET_PASSWORD(payload: any): Promise<ResetPasswordResponse> {
-    return await axiosClient.post("/reset-password", payload);
+    return axiosClient.post("/reset-password", payload);
   },
   async PROFILE(): Promise<ProfileResponse> {
-    return await axiosClient.get("/account/profile");
+    return axiosClient.get("/account/profile");
   },
   async B2B_PROFILE(): Promise<ProfileResponse> {
-    return await axiosClient.get("/account/b2bprofile");
+    return axiosClient.get("/account/b2bprofile");
   },
 };
